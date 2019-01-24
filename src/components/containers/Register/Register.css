@@ -1,0 +1,16 @@
+@import '../../../styles/variables.css';
+
+.register {
+  width: 240px;
+  max-width: 400px;
+  padding: 80px;
+  background-color: #fff;
+
+  & form label {
+    margin-top: 20px;
+  }
+}
+
+.buttonGoto {
+  margin-top: 20px;
+}

@@ -1,0 +1,10 @@
+{
+  "The email address is not properly formatted.": "Ten adres e-mail nie jest poprawnie sformatowany.",
+  "Your password must contain at least 6 characters, including 1 digit.": "Hasło musi zawierać co najmniej 6 znaków, w tym chociaż jedną cyfrę.",
+  "Please fill out this field.": "Wypełnij to pole.",
+  "Incorrect login or password": "",
+  "Customer already exists.": "",
+  "An error occured.": "",
+  "Log in": "",
+  "Register": "Zarejestruj"
+}

@@ -1,0 +1,102 @@
+@import '../../../styles/variables.css';
+
+.input {
+  display: block;
+  box-sizing: border-box;
+  padding-top: 15px;
+  padding-bottom: 15px;
+  padding-left: 35px;
+  border: none;
+  border-bottom: 1px solid var(--light-grey);
+  color: var(--main-text-color);
+  outline: none;
+  position: relative;
+  background-color: transparent;
+  font-family: var(--font-family-light);
+  font-size: 15px;
+  margin: 0 auto;
+  width: 100%;
+
+  &::placeholder {
+    color: var(--main-text-color);
+  }
+
+  &:-webkit-autofill {
+    -webkit-box-shadow: 0 0 0 30px #fff inset;
+  }
+
+  &.error,
+  .generalError {
+    border-bottom: 1px solid var(--error);
+  }
+
+  &:focus {
+    border-bottom: 1px solid var(--main-color);
+  }
+
+  &.weak {
+    border-bottom: 1px solid var(--weak);
+  }
+
+  &.fair {
+    border-bottom: 1px solid var(--fair);
+  }
+
+  &.good {
+    border-bottom: 1px solid var(--good);
+  }
+
+  &.strong {
+    border-bottom: 1px solid var(--strong);
+  }
+
+  &.too-short {
+    border-bottom: 1px solid var(--weak);
+  }
+}
+
+.errorField {
+  color: var(--error);
+  font-size: 12px;
+  font-family: var(--font-family-light);
+  position: absolute;
+  top: 55px;
+  width: 100%;
+
+  &.weak {
+    color: var(--weak);
+  }
+
+  &.fair {
+    color: var(--fair);
+  }
+
+  &.good {
+    color: var(--good);
+  }
+
+  &.strong {
+    color: var(--strong);
+  }
+}
+
+.label {
+  position: relative;
+  width: 100%;
+  display: block;
+
+  &::before {
+    position: absolute;
+    z-index: 2;
+  }
+
+  &.email::before {
+    content: url('./img/email_icon.svg');
+    top: 16px;
+  }
+
+  &.pass::before {
+    content: url('./img/lock_icon.svg');
+    top: 13px;
+  }
+}

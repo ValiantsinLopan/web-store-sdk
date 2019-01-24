@@ -1,0 +1,39 @@
+@import '../../../styles/variables.css';
+
+.button {
+  display: block;
+  box-sizing: border-box;
+  width: 100%;
+  height: 55px;
+  outline: 0;
+  border: 1px var(--button-gradient-1) solid;
+  border-radius: 30px;
+  color: var(--button-text);
+  text-align: center;
+  text-decoration: none;
+  font-size: 17px;
+  line-height: 1.3333333;
+  letter-spacing: 0.025em;
+  cursor: pointer;
+  font-family: var(--font-family-book);
+  background: linear-gradient(90deg, var(--button-gradient-1), var(--button-gradient-2));
+}
+
+.button:hover,
+.button:focus {
+  cursor: pointer;
+  background: linear-gradient(90deg, var(--button-gradient-2), var(--button-gradient-1));
+}
+
+.button-variant-white {
+  border: 1px solid var(--main-color);
+  background: #fff;
+  color: var(--main-color);
+
+  &:hover,
+  &:focus {
+    border: 1px solid var(--button-secondary);
+    color: var(--button-secondary);
+    background: #fff;
+  }
+}

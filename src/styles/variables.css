@@ -1,0 +1,49 @@
+:root {
+  /*
+   * Typography
+   * ======================================================================== */
+
+  --font-family-base: 'Geomanist-Regular', 'Segoe UI', 'HelveticaNeue-Light', sans-serif;
+  --font-family-regular: 'Geomanist-Regular', 'Segoe UI', 'HelveticaNeue-Light', sans-serif;
+  --font-family-book: 'Geomanist-Book', 'Segoe UI', 'HelveticaNeue-Light', sans-serif;
+  --font-family-light: 'Geomanist-Light', 'Segoe UI', 'HelveticaNeue-Light', sans-serif;
+
+  /*
+   * Layout
+   * ======================================================================== */
+
+  --max-content-width: 1000px;
+
+  /*
+   * Media queries breakpoints
+   * ======================================================================== */
+
+  --screen-xs-min: 480px;  /* Extra small screen / phone */
+  --screen-sm-min: 768px;  /* Small screen / tablet */
+  --screen-md-min: 992px;  /* Medium screen / desktop */
+  --screen-lg-min: 1200px; /* Large screen / wide desktop */
+  --button-gradient-1: #65bd72;
+  --button-gradient-2: #64bca3;
+  --button-secondary: #595fbb;
+  --button-text: #fff;
+  --error: #ff0954;
+  --main-gradient-1: #44b2e7;
+  --main-gradient-2: #595fbb;
+  --main-color: #5db98f;
+  --weak: #ff0954;
+  --fair: #efd952;
+  --good: #97d3ea;
+  --strong: #5db98f;
+  --main-text-color: #606376;
+  --light-grey: #d3dbe6;
+  --header-height: 60px;
+}
+
+@custom-media --small-viewport-min (min-width: 768px);
+@custom-media --medium-viewport-min (min-width: 992px);
+@custom-media --large-viewport-min (min-width: 1200px);
+@custom-media --xxxsmall-viewport-max (max-width: 390px);
+@custom-media --xxsmall-viewport-max (max-width: 479px);
+@custom-media --xsmall-viewport-max (max-width: 767px);
+@custom-media --small-viewport-max (max-width: 991px);
+@custom-media --medium-viewport-max (max-width: 1199px);

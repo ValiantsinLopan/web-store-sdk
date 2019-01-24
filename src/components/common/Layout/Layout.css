@@ -1,0 +1,24 @@
+@import '../../../styles/variables.css';
+
+.root {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  width: 100%;
+  font-family: var(--font-family-base);
+  background: linear-gradient(-21deg, var(--main-gradient-1), var(--main-gradient-2));
+}
+
+@media (--xxsmall-viewport-max) {
+  .root {
+    height: 100vh;
+  }
+}
+
+.wrapper {
+  flex: 1 1 auto;
+  display: flex;
+  max-width: 500px;
+  margin: 0 auto;
+  align-items: center;
+}

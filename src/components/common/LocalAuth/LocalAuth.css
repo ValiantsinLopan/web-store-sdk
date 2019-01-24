@@ -1,0 +1,18 @@
+@import '../../../styles/variables.css';
+
+.wrapper {
+  position: relative;
+
+  & button {
+    margin-top: 35px;
+  }
+}
+
+.error {
+  color: var(--error);
+  font-size: 12px;
+  font-family: var(--font-family-light);
+  position: absolute;
+  top: -15px;
+  width: 100%;
+}
