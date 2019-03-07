@@ -17,7 +17,11 @@ export class LocalRegister extends React.Component {
     const { onComplete } = this.props;
     try {
       const { token } = await Authentication.register({ email, password });
+<<<<<<< HEAD
       onComplete(token);
+=======
+      onComplete(token, email);
+>>>>>>> release
     } catch (error) {
       return error;
     }

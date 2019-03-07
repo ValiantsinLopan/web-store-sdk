@@ -11,6 +11,10 @@ install_staging:
         BUILDER_PROJECT_PATH: /home/cleeng-ci/workspace/gummybear-stage.cleeng.com
     stage: install
     before_script:
+<<<<<<< HEAD
+=======
+        - rm -rf $BUILDER_PROJECT_PATH/tmp || true
+>>>>>>> release
         - mkdir -p $BUILDER_PROJECT_PATH/tmp
         - cd $BUILDER_PROJECT_PATH/tmp && git clone -b stage git@code.stardustlab.com:cleeng/gummybear.git
     script:
@@ -47,11 +51,17 @@ build-deploy_staging:
         - su node-usr -c 'source ~/.bashrc && cd /home/cleeng-ci/workspace/gummybear-stage.cleeng.com/tmp/gummybear && yarn run build -- --release'
         - NOW=$(date +"%Y%m%d-%H%M")
         - tar -czf /home/cleeng-ci/output/gummybear-stage.cleeng.com/gummybear-stage_cleeng_com_release$NOW.tar.gz $BUILDER_PROJECT_PATH/tmp/gummybear
+<<<<<<< HEAD
         - sleep 5
         - tar -tvvf /home/cleeng-ci/output/gummybear-stage.cleeng.com/gummybear-stage_cleeng_com_release$NOW.tar.gz
         - 'aws opsworks --region us-east-1 create-deployment --stack-id 650ca0bf-6a14-4660-b4d7-f48c81555df1 --app-id 7774e0a9-be30-4474-bd08-020d8afac060 --command "{\"Name\":\"deploy\"}"'
     after_script:
         - rm -Rf $BUILDER_PROJECT_PATH/tmp
+=======
+        - 'aws opsworks --region us-east-1 create-deployment --stack-id 650ca0bf-6a14-4660-b4d7-f48c81555df1 --app-id 7774e0a9-be30-4474-bd08-020d8afac060 --command "{\"Name\":\"deploy\"}"'
+    after_script:
+        - rm -rf $BUILDER_PROJECT_PATH/tmp || true
+>>>>>>> release
     only:
         - stage
         - hostersi-stage
@@ -103,10 +113,16 @@ build-deploy_production:
         - sleep 5
         - tar -tvvf /home/cleeng-ci/output/gummybear.cleeng.com/gummybear_cleeng_com_release$NOW.tar.gz
         - 'aws opsworks --region us-east-1 create-deployment --stack-id 650ca0bf-6a14-4660-b4d7-f48c81555df1 --app-id 3ac05ee0-fb12-4fb4-a1a6-2e06910d78b9 --command "{\"Name\":\"deploy\"}"'
+<<<<<<< HEAD
     after_script:
         - rm -Rf $BUILDER_PROJECT_PATH/tmp
+=======
+>>>>>>> release
     only:
         - master
     tags:
         - build_test_videotron_test
+<<<<<<< HEAD
 
+=======
+>>>>>>> release

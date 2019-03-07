@@ -5,7 +5,11 @@ import { reactI18nextModule } from 'react-i18next';
 
 const options = {
   fallbackLng: 'en-US',
+<<<<<<< HEAD
   debug: true,
+=======
+  debug: false,
+>>>>>>> release
   load: 'currentOnly',
   interpolation: {
     escapeValue: false, // not needed for react!!

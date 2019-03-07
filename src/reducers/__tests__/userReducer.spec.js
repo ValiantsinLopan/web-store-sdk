@@ -1,7 +1,32 @@
+<<<<<<< HEAD
 /* eslint-disable no-unused-vars */
 import { SET_CUSTOMER_TOKEN, LOGOUT, SET_USER_DETAILS } from 'src/constants';
 import testReducer from '../userReducer';
 
+=======
+import {
+  SET_CUSTOMER_TOKEN,
+  LOGOUT,
+  SET_USER_DETAILS,
+  SET_CONSENTS,
+  SET_TEMP_EMAIL,
+  SET_USER_EMAIL,
+} from 'src/constants';
+import testReducer from '../userReducer';
+
+const mockConsentResponse = {
+  terms: {
+    broadcasterId: 0,
+    name: 'terms',
+    version: '1',
+    value: 'https://cleeng.com/legal',
+    label:
+      'I accept the <a href="https://cleeng.com/cleeng-user-agreement" target="_blank">Terms and Conditions</a> of Cleeng.',
+    required: true,
+  },
+};
+
+>>>>>>> release
 describe('User Reducer', () => {
   const initialState = {};
 
@@ -10,7 +35,11 @@ describe('User Reducer', () => {
       const token = '1224';
       expect(
         testReducer(initialState, {
+<<<<<<< HEAD
           type: 'SET_CUSTOMER_TOKEN',
+=======
+          type: SET_CUSTOMER_TOKEN,
+>>>>>>> release
           payload: token,
         }),
       ).toEqual({
@@ -24,7 +53,11 @@ describe('User Reducer', () => {
         testReducer(
           { customerToken: '4321' },
           {
+<<<<<<< HEAD
             type: 'SET_CUSTOMER_TOKEN',
+=======
+            type: SET_CUSTOMER_TOKEN,
+>>>>>>> release
             payload: token,
           },
         ),
@@ -40,7 +73,11 @@ describe('User Reducer', () => {
         testReducer(
           { customerToken: '4321' },
           {
+<<<<<<< HEAD
             type: 'LOGOUT',
+=======
+            type: LOGOUT,
+>>>>>>> release
           },
         ),
       ).toEqual({
@@ -57,6 +94,7 @@ describe('User Reducer', () => {
       };
       expect(
         testReducer(
+<<<<<<< HEAD
           {},
           {
             type: 'SET_USER_DETAILS',
@@ -64,6 +102,63 @@ describe('User Reducer', () => {
           },
         ),
       ).toEqual(data);
+=======
+          {
+            tempEmail: 'john@example.com',
+          },
+          {
+            type: SET_USER_DETAILS,
+            payload: data,
+          },
+        ),
+      ).toEqual({
+        ...data,
+        tempEmail: null,
+      });
+    });
+  });
+  describe('SET_TEMP_EMAIL', () => {
+    it('should set temp email', () => {
+      const email = 'john@example.com';
+      expect(
+        testReducer(
+          {},
+          {
+            type: SET_TEMP_EMAIL,
+            payload: email,
+          },
+        ),
+      ).toEqual({
+        tempEmail: email,
+      });
+    });
+  });
+  describe('SET_USER_EMAIL', () => {
+    it('should set passed user data', () => {
+      const email = 'john@example.com';
+      expect(
+        testReducer(
+          {},
+          {
+            type: SET_USER_EMAIL,
+            payload: email,
+          },
+        ),
+      ).toEqual({ email });
+    });
+  });
+  describe('SET_CONSENTS', () => {
+    it('should set consents definitions', () => {
+      expect(
+        testReducer(
+          {},
+          {
+            type: SET_CONSENTS,
+            payload: mockConsentResponse,
+          },
+        ),
+      ).toEqual(mockConsentResponse);
+>>>>>>> release
     });
   });
 });

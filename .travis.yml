@@ -1,6 +1,7 @@
 language: node_js
 node_js:
   - 'stable'
+<<<<<<< HEAD
   - '8'
   - '6'
 env:
@@ -15,3 +16,9 @@ script:
   - yarn lint
   - yarn test
   - yarn build --release
+=======
+  - '11.3.0'
+script:
+  - yarn lint
+  - yarn test
+>>>>>>> release

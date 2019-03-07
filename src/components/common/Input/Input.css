@@ -53,6 +53,17 @@
   &.too-short {
     border-bottom: 1px solid var(--weak);
   }
+<<<<<<< HEAD
+=======
+
+  &.fail {
+    color: var(--error-offer);
+  }
+
+  &.correct {
+    color: var(--pass-offer);
+  }
+>>>>>>> release
 }
 
 .errorField {
@@ -84,6 +95,17 @@
   position: relative;
   width: 100%;
   display: block;
+<<<<<<< HEAD
+=======
+  text-align: left;
+
+  @media (--xsmall-viewport-max) {
+    &.coupon {
+      width: 50%;
+      float: right;
+    }
+  }
+>>>>>>> release
 
   &::before {
     position: absolute;
@@ -99,4 +121,28 @@
     content: url('./img/lock_icon.svg');
     top: 13px;
   }
+<<<<<<< HEAD
+=======
+
+  &.coupon::before {
+    content: url('./img/coupon_icon.svg');
+    top: 13px;
+  }
+
+  &.fail::after {
+    content: url('./img/remove.svg');
+    top: 15px;
+    right: 3px;
+    position: absolute;
+    z-index: 2;
+  }
+
+  &.correct::after {
+    content: url('./img/tick.svg');
+    top: 15px;
+    right: 3px;
+    position: absolute;
+    z-index: 2;
+  }
+>>>>>>> release
 }

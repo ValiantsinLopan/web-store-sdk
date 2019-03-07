@@ -20,6 +20,18 @@ describe('<LocalLogin/>', () => {
       const { wrapper } = renderComponent();
       expect(wrapper.find(LocalAuth).length).toBe(1);
     });
+<<<<<<< HEAD
+=======
+    it('should pass onEmailChange fn to LocalAuth', () => {
+      const onEmailChangeMock = jest.fn();
+      const { wrapper } = renderComponent({
+        onEmailChange: onEmailChangeMock,
+      });
+      expect(wrapper.find(LocalAuth).props().onEmailChange).toBe(
+        onEmailChangeMock,
+      );
+    });
+>>>>>>> release
   });
   describe('@events', () => {
     afterEach(() => {
@@ -44,7 +56,11 @@ describe('<LocalLogin/>', () => {
         expect(login).toHaveBeenCalledWith(data);
         setImmediate(() => {
           expect(onCompleteMock).toHaveBeenCalledTimes(1);
+<<<<<<< HEAD
           expect(onCompleteMock).toHaveBeenCalledWith('1234');
+=======
+          expect(onCompleteMock).toHaveBeenCalledWith('1234', data.email);
+>>>>>>> release
           done();
         });
       });

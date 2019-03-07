@@ -1,7 +1,14 @@
+<<<<<<< HEAD
+=======
+import { getUser } from 'src/services/authentication';
+import { mockStoreCreator } from 'test/helpers/getMockStore';
+
+>>>>>>> release
 import * as actions from '../userActions';
 import {
   SET_CUSTOMER_TOKEN,
   SET_USER_DETAILS,
+<<<<<<< HEAD
   GO_TO_CHECKOUT_STEP,
 } from '../../constants';
 
@@ -9,6 +16,13 @@ import { getUser } from '../../services/authentication';
 
 import { mockStoreCreator } from './../../../test/helpers/getMockStore';
 
+=======
+  SET_TEMP_EMAIL,
+  GO_TO_CHECKOUT_STEP,
+  SET_USER_EMAIL,
+} from '../../constants';
+
+>>>>>>> release
 jest.mock('./../../config/config.client', () => ({
   offerId: '123456',
 }));
@@ -30,7 +44,11 @@ describe('User Actions', () => {
   it('setCustomerToken(token)', () => {
     const token = '1234abc';
     expect(actions.setCustomerToken(token)).toEqual({
+<<<<<<< HEAD
       type: 'SET_CUSTOMER_TOKEN',
+=======
+      type: SET_CUSTOMER_TOKEN,
+>>>>>>> release
       payload: token,
     });
   });
@@ -39,10 +57,33 @@ describe('User Actions', () => {
       email: 'john@example.com',
     };
     expect(actions.setUserDetails(data)).toEqual({
+<<<<<<< HEAD
       type: 'SET_USER_DETAILS',
       payload: data,
     });
   });
+=======
+      type: SET_USER_DETAILS,
+      payload: data,
+    });
+  });
+  it('setTempEmail(data)', () => {
+    const data = {
+      email: 'john@example.com',
+    };
+    expect(actions.setTempEmail(data)).toEqual({
+      type: SET_TEMP_EMAIL,
+      payload: data,
+    });
+  });
+  it('setUserEmail(email)', () => {
+    const email = 'john@example.com';
+    expect(actions.setUserEmail(email)).toEqual({
+      type: SET_USER_EMAIL,
+      payload: email,
+    });
+  });
+>>>>>>> release
   describe('onSuccessfulLogin(token)', () => {
     it('should go to last step if access already granted', done => {
       global.CleengApi = {
@@ -77,13 +118,25 @@ describe('User Actions', () => {
         }),
       };
       const token = '1234abc';
+<<<<<<< HEAD
       store.dispatch(actions.onSuccessfulLogin(token));
+=======
+      const email = 'john@example.com';
+      store.dispatch(actions.onSuccessfulLogin(token, email));
+>>>>>>> release
       const dispatchedActions = store.getActions();
       expect(dispatchedActions[0]).toEqual({
         payload: token,
         type: SET_CUSTOMER_TOKEN,
       });
       expect(dispatchedActions[1]).toEqual({
+<<<<<<< HEAD
+=======
+        payload: email,
+        type: SET_USER_EMAIL,
+      });
+      expect(dispatchedActions[2]).toEqual({
+>>>>>>> release
         type: GO_TO_CHECKOUT_STEP,
         payload: 'offerDetails',
       });

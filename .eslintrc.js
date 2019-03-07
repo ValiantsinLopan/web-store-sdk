@@ -39,6 +39,10 @@ module.exports = {
     'no-shadow': 'off',
     'css-modules/no-undef-class': 'off',
     'class-methods-use-this': 'off',
+<<<<<<< HEAD
+=======
+    'react/no-did-update-set-state': 'off',
+>>>>>>> release
     // Forbid the use of extraneous packages
     // https://github.com/benmosher/eslint-plugin-import/blob/master/docs/rules/no-extraneous-dependencies.md
     'import/no-extraneous-dependencies': ['error', { packageDir: '.' }],

@@ -1,0 +1,54 @@
+@import '../../../styles/variables.css';
+
+.thankYou {
+  width: 80%;
+  margin: 0 auto;
+  text-align: center;
+  line-height: 1.3em;
+  font-size: 15px;
+  color: var(--main-text-color);
+  font-family: var(--font-family-book);
+}
+
+.thankYouTitle {
+  font-size: 25px;
+  margin-top: 75px;
+  margin-bottom: 25px;
+}
+
+.thankYouMessage2 {
+  font-family: var(--font-family-light);
+}
+
+.link {
+  font-family: var(--font-family-book);
+  color: var(--main-text-color);
+  padding-left: 4px;
+
+  &:hover {
+    font-weight: bold;
+  }
+}
+
+.thankYouSocials {
+  margin: 0 35px;
+  border-top: 1px var(--light-grey) solid;
+  padding-top: 20px;
+  margin-top: 35px;
+}
+
+.thankYouShare {
+  color: var(--font-light-color);
+  font-family: var(--font-family-light);
+  font-size: 13px;
+  margin-top: 15px;
+}
+
+.thankYouButtons {
+  display: flex;
+  justify-content: center;
+
+  & button:first-child {
+    margin-right: 13px;
+  }
+}

@@ -1,6 +1,10 @@
 {
   "name": "Button",
+<<<<<<< HEAD
   "version": "1.0.0",
+=======
+  "version": "1.1.0",
+>>>>>>> release
   "private": true,
   "main": "./Button.js"
 }

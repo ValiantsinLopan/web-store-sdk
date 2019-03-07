@@ -8,10 +8,19 @@ class UserController {
     this.routing.post('/login', UserController.login);
     this.routing.post('/', UserController.get);
     this.routing.post('/register', UserController.register);
+<<<<<<< HEAD
+=======
+    this.routing.post('/resetPassword', UserController.resetPassword);
+>>>>>>> release
     this.routing.get(
       '/getLocaleDataFromIp',
       UserController.getLocaleDataFromIp,
     );
+<<<<<<< HEAD
+=======
+    this.routing.get('/getConsents', UserController.getConsents);
+    this.routing.post('/submitConsent', UserController.submitConsent);
+>>>>>>> release
   }
 
   static async login(req, res) {
@@ -55,6 +64,38 @@ class UserController {
     }
     res.json({ data: respond });
   }
+<<<<<<< HEAD
+=======
+
+  static async getConsents(req, res) {
+    try {
+      var respond = await User.getConsents();
+    } catch (error) {
+      return res.json({ error: 'not allow', ...error }, 401);
+    }
+    res.json({ data: respond });
+  }
+
+  static async submitConsent(req, res) {
+    try {
+      var respond = await User.submitConsent(req.body);
+    } catch (error) {
+      return res.json({ error: 'not allow', ...error }, 401);
+    }
+    res.json({ data: respond });
+  }
+
+  static async resetPassword(req, res) {
+    try {
+      var respond = await User.resetPassword({
+        email: req.body.email
+      });
+    } catch (error) {
+      return res.json({ error: 'error', ...error }, 404);
+    }
+    res.json({ data: respond });
+  }
+>>>>>>> release
 }
 
 export default new UserController();

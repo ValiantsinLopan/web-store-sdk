@@ -11,6 +11,11 @@ import config from 'src/config/config.client';
 import OfferDetails from 'src/components/containers/OfferDetails';
 import Login from 'src/components/containers/Login';
 import Register from 'src/components/containers/Register';
+<<<<<<< HEAD
+=======
+import PasswordResetWrapper from 'src/components/containers/PasswordResetWrapper/PasswordResetWrapper';
+import ThankYouPage from 'src/components/common/ThankYouPage/ThankYouPage';
+>>>>>>> release
 
 class Init extends React.Component {
   static propTypes = {
@@ -41,6 +46,11 @@ class Init extends React.Component {
         login: <Login />,
         register: <Register />,
         offerDetails: <OfferDetails />,
+<<<<<<< HEAD
+=======
+        passwordReset: <PasswordResetWrapper />,
+        thankYouPage: <ThankYouPage />,
+>>>>>>> release
       }[this.props.currentStep.name]
     );
   }

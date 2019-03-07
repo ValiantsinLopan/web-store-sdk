@@ -1,4 +1,8 @@
 import { renderComponentWithLabeling } from 'test/helpers/testComponentHelper.js';
+<<<<<<< HEAD
+=======
+import SocialLogins from 'src/components/common/SocialLogins';
+>>>>>>> release
 import Register from '../Register';
 
 jest.mock('./../../../../config/config.client', () => ({
@@ -18,6 +22,10 @@ describe('<Register/>', () => {
     it('should render initial state', () => {
       const { wrapper } = renderComponent(props);
       expect(wrapper.exists('LocalRegister')).toBe(true);
+<<<<<<< HEAD
+=======
+      expect(wrapper.find(SocialLogins).length).toBe(1);
+>>>>>>> release
       expect(wrapper.exists('Button')).toBe(true);
     });
   });
@@ -28,9 +36,19 @@ describe('<Register/>', () => {
     it('successfulLogin should call onSuccessfulLogin', () => {
       const { instance } = renderComponent(props);
       const token = '1234';
+<<<<<<< HEAD
       instance.successfulLogin(token);
       expect(instance.props.onSuccessfulLogin).toHaveBeenCalledTimes(1);
       expect(instance.props.onSuccessfulLogin).toHaveBeenCalledWith(token);
+=======
+      const email = 'john@example.com';
+      instance.successfulLogin(token, email);
+      expect(instance.props.onSuccessfulLogin).toHaveBeenCalledTimes(1);
+      expect(instance.props.onSuccessfulLogin).toHaveBeenCalledWith(
+        token,
+        email,
+      );
+>>>>>>> release
     });
     it('goToRegister should call goToStep', () => {
       const { instance } = renderComponent(props);

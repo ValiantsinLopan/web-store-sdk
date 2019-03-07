@@ -46,7 +46,11 @@ describe('<LocalRegister/>', () => {
         expect(register).toHaveBeenCalledWith(data);
         setImmediate(() => {
           expect(onCompleteMock).toHaveBeenCalledTimes(1);
+<<<<<<< HEAD
           expect(onCompleteMock).toHaveBeenCalledWith('1234');
+=======
+          expect(onCompleteMock).toHaveBeenCalledWith('1234', data.email);
+>>>>>>> release
           done();
         });
       });

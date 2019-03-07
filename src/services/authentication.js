@@ -31,6 +31,25 @@ class Authentication {
     return json.data;
   }
 
+<<<<<<< HEAD
+=======
+  async resetPassword({ email }) {
+    const result = await fetch(`${this.url}/user/resetPassword`, {
+      headers: {
+        Accept: 'application/json',
+        'Content-Type': 'application/json',
+      },
+      method: 'POST',
+      body: JSON.stringify({ email }),
+    });
+    const json = await result.json();
+    if (json.error) {
+      throw json;
+    }
+    return json.data;
+  }
+
+>>>>>>> release
   getLang() {
     if (navigator.languages !== undefined) {
       const lang = navigator.languages[0];
@@ -66,6 +85,36 @@ class Authentication {
     }
     return json.data;
   }
+<<<<<<< HEAD
+=======
+
+  async submitConsent({ email, consent, isChecked }) {
+    const result = await fetch(`${this.url}/user/submitConsent`, {
+      headers: {
+        Accept: 'application/json',
+        'Content-Type': 'application/json',
+      },
+      method: 'POST',
+      body: JSON.stringify({
+        customerEmail: email,
+        name: consent.name,
+        state: isChecked,
+        version: consent.version,
+      }),
+    });
+    const json = await result.json();
+    if (json.error) {
+      throw json;
+    }
+    return json.data;
+  }
+
+  async getConsents() {
+    const result = await fetch(`${this.url}/user/getConsents`);
+    const json = await result.json();
+    return json.data;
+  }
+>>>>>>> release
 }
 
 export default new Authentication();

@@ -3,6 +3,7 @@
 .root {
   display: flex;
   flex-direction: column;
+<<<<<<< HEAD
   min-height: 100vh;
   width: 100%;
   font-family: var(--font-family-base);
@@ -21,4 +22,39 @@
   max-width: 500px;
   margin: 0 auto;
   align-items: center;
+=======
+  justify-content: space-around;
+  min-height: 100%;
+  width: 100%;
+  font-family: var(--font-family-base);
+  color: var(--main-text-color);
+  background: linear-gradient(-21deg, var(--main-gradient-1), var(--main-gradient-2));
+  overflow: auto;
+  padding-top: 30px;
+  padding-bottom: 30px;
+}
+
+.wrapper {
+  background-color: #fff;
+  min-height: 600px;
+  width: 700px;
+  margin: 0 auto;
+  align-items: center;
+  flex-direction: column;
+  justify-content: space-between;
+  position: relative;
+}
+
+@media (--xsmall-viewport-max) {
+  .root {
+    padding-top: 0;
+    padding-bottom: 0;
+    min-height: 100vh;
+  }
+
+  .wrapper {
+    min-height: 100vh;
+    width: 100%;
+  }
+>>>>>>> release
 }

@@ -4,6 +4,7 @@
   display: block;
   box-sizing: border-box;
   width: 100%;
+<<<<<<< HEAD
   height: 55px;
   outline: 0;
   border: 1px var(--button-gradient-1) solid;
@@ -17,15 +18,164 @@
   cursor: pointer;
   font-family: var(--font-family-book);
   background: linear-gradient(90deg, var(--button-gradient-1), var(--button-gradient-2));
+=======
+  outline: 0;
+  text-align: center;
+  text-decoration: none;
+  line-height: 1.3333333;
+  letter-spacing: 0.025em;
+  cursor: pointer;
+  font-family: var(--font-family-regular);
+  color: var(--button-main-font-color);
+  background-color: var(--button-main-color);
+  border: 1px var(--button-border-color) solid;
+  border-radius: 6px;
+  height: 55px;
+  font-size: 16px;
+>>>>>>> release
 }
 
 .button:hover,
 .button:focus {
   cursor: pointer;
+<<<<<<< HEAD
   background: linear-gradient(90deg, var(--button-gradient-2), var(--button-gradient-1));
 }
 
 .button-variant-white {
+=======
+  background-color: var(--button-border-color);
+}
+
+.button-variant-secondary {
+  background-color: var(--medium-grey);
+  color: var(--button-main-color);
+}
+
+.button-variant-creditcard {
+  background-color: var(--medium-grey);
+  color: var(--button-main-color);
+
+  &::before {
+    content: url('./img/credit-card.svg');
+    height: 20px;
+    position: relative;
+    top: 3px;
+    display: inline-block;
+    padding-right: 5px;
+  }
+}
+
+.button-variant-google,
+.button-variant-fb {
+  background-color: transparent;
+  width: 80px;
+  height: 40px;
+  display: flex;
+  justify-content: center;
+  text-align: center;
+  color: var(--button-main-color);
+  font-size: 13px;
+
+  &::before {
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+  }
+}
+
+.text-align {
+  position: relative;
+  width: 100%;
+
+  &::before {
+    position: absolute;
+    left: 15px;
+  }
+}
+
+.button-variant-google::before {
+  content: url('./img/google.png');
+}
+
+.button-variant-fb::before {
+  content: url('./img/fb.svg');
+}
+
+.button-variant-link {
+  background-color: transparent;
+  color: var(--button-main-color);
+  display: inline-block;
+  box-sizing: border-box;
+  width: auto;
+  outline: 0;
+  text-align: center;
+  text-decoration: underline;
+  line-height: 1;
+  letter-spacing: 0.025em;
+  cursor: pointer;
+  font-family: var(--font-family-light);
+  border: none;
+  border-radius: none;
+  height: auto;
+  font-size: 12px;
+
+  &:hover,
+  &:focus {
+    background-color: transparent;
+    font-weight: bold;
+  }
+}
+
+.button-variant-back {
+  background-color: transparent;
+  color: var(--font-light-color);
+  display: inline-block;
+  box-sizing: border-box;
+  width: auto;
+  outline: 0;
+  text-align: center;
+  text-decoration: none;
+  line-height: 1;
+  letter-spacing: 0.025em;
+  cursor: pointer;
+  font-family: var(--font-family-regular);
+  border: none;
+  border-radius: none;
+  height: auto;
+  font-size: 16px;
+
+  &::before {
+    content: url('./img/back.svg');
+    display: inline-block;
+    padding-right: 8px;
+    width: 16px;
+    height: 24px;
+  }
+
+  &:hover,
+  &:focus {
+    background-color: transparent;
+    font-weight: bold;
+  }
+}
+
+.button-variant-cleeng {
+  border: 1px var(--button-cleeng-gradient-1) solid;
+  border-radius: 30px;
+  color: var(--button-text);
+  font-size: 17px;
+  font-family: var(--font-family-book);
+  background: linear-gradient(90deg, var(--button-cleeng-gradient-1), var(--button-cleeng-gradient-2));
+
+  &:hover,
+  &:focus {
+    background: linear-gradient(90deg, var(--button-cleeng-gradient-2), var(--button-cleeng-gradient-1));
+  }
+}
+
+.button-variant-cleengwhite {
+>>>>>>> release
   border: 1px solid var(--main-color);
   background: #fff;
   color: var(--main-color);

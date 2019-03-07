@@ -1,1 +1,174 @@
 @import '../../../styles/variables.css';
+<<<<<<< HEAD
+=======
+
+.offerWrapper {
+  margin: 0 auto;
+  height: 100%;
+  width: 100%;
+  margin-bottom: 36px;
+}
+
+.loaderWrapper {
+  min-height: 453px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.title {
+  font-family: var(--font-family-book);
+  font-size: 25px;
+  border-width: 0 0 1px;
+  border-style: solid;
+  border-color: var(--light-grey);
+  padding: 20px 0;
+  text-align: center;
+}
+
+.offerContent {
+  display: flex;
+}
+
+.coupon {
+  width: 50%;
+  position: relative;
+}
+
+.offerDetailsWrapper {
+  background-color: var(--medium-grey);
+  padding: 20px;
+  width: 88%;
+  border-radius: 5px;
+}
+
+.offerDetailsAndCoupon {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: flex-end;
+  margin-top: 12px;
+  margin-bottom: 12px;
+}
+
+.offerImg {
+  width: auto;
+  height: auto;
+  max-height: 300px;
+}
+
+.offerTitle {
+  font-family: var(--font-family-regular);
+  font-size: 20px;
+  margin-bottom: 15px;
+}
+
+.offerBody {
+  padding: 0 35px;
+}
+
+.offerDetails {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+}
+
+.offerDescription {
+  font-family: var(--font-family-light);
+  color: var(--font-light-color);
+  font-size: 15px;
+  width: 60%;
+}
+
+.trialDescription {
+  margin-bottom: 5px;
+}
+
+.offerDetailsPrice {
+  text-align: center;
+}
+
+.trial {
+  color: var(--lighter-grey);
+  text-transform: uppercase;
+  border: 1px var(--lighter-grey) solid;
+  border-radius: 5px;
+  padding: 5px;
+  background-color: #fff;
+  font-size: 13px;
+  line-height: 13px;
+  font-family: var(--font-family-regular);
+  margin-bottom: 10px;
+  display: inline-block;
+}
+
+.totalLabel {
+  display: inline-block;
+}
+
+.offerPrice {
+  float: right;
+  width: 18%;
+
+  & span {
+    font-size: 12px;
+  }
+}
+
+.price {
+  font-family: var(--font-family-regular);
+  font-size: 20px;
+
+  & span {
+    font-size: 12px;
+  }
+}
+
+.totalWrapper {
+  background-color: var(--medium-grey);
+  padding: 20px;
+  border-width: 1px 0;
+  border-style: solid;
+  border-color: var(--light-grey);
+  font-family: var(--font-family-regular);
+}
+
+.priceBeforeWrapper {
+  font-size: 16px;
+  margin-bottom: 11px;
+}
+
+.couponDiscountWrapper {
+  font-size: 16px;
+  color: var(--pass-offer);
+  font-family: var(--font-family-light);
+  margin-bottom: 14px;
+}
+
+.priceWrapper {
+  font-size: 20px;
+}
+
+.offerPayment {
+  height: 100%;
+}
+
+@media (--xsmall-viewport-max) {
+  .offerImg {
+    display: none;
+  }
+
+  .offerBody {
+    padding: 0 10px;
+  }
+
+  .offerPrice {
+    width: auto;
+  }
+
+  .coupon {
+    width: 100%;
+    margin-top: 20px;
+  }
+}
+>>>>>>> release

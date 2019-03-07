@@ -1,6 +1,10 @@
 BSD 3-Clause License
 
+<<<<<<< HEAD
 Copyright (c) 2019, Cleeng
+=======
+Copyright (c) 2019, Cleeng B.V.
+>>>>>>> release
 All rights reserved.
 
 Redistribution and use in source and binary forms, with or without

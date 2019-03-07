@@ -19,6 +19,10 @@ describe('<Input/>', () => {
       expect(typeof input.props().onChange).toBe('function');
       expect(instance.props.icon).toBe('');
       expect(instance.props.error).toBe('');
+<<<<<<< HEAD
+=======
+      expect(instance.props.value).toBe('');
+>>>>>>> release
       expect(wrapper.find('input').hasClass('error')).toBe(false);
     });
     it('should add custom class name', () => {
@@ -73,6 +77,7 @@ describe('<Input/>', () => {
     afterEach(() => {
       jest.resetAllMocks();
     });
+<<<<<<< HEAD
     it('should call passed function on change', () => {
       const onChangeMock = jest.fn();
       const { wrapper } = renderComponent({
@@ -82,6 +87,48 @@ describe('<Input/>', () => {
       expect(onChangeMock).not.toHaveBeenCalled();
       wrapper.find('input').simulate('change', { target: { value: 'sth' } });
       expect(onChangeMock).toHaveBeenCalledTimes(1);
+=======
+    describe('on change', () => {
+      it('should call passed function set state', () => {
+        const onChangeMock = jest.fn();
+        const { wrapper } = renderComponent({
+          ...initialState,
+          onChangeFn: onChangeMock,
+        });
+        expect(onChangeMock).not.toHaveBeenCalled();
+        expect(wrapper.state().value).toBe('');
+        wrapper.find('input').simulate('change', { target: { value: 'sth' } });
+        expect(onChangeMock).toHaveBeenCalledTimes(1);
+        expect(wrapper.state().value).toBe('sth');
+      });
+    });
+    describe('on key down', () => {
+      it('should call onEnterFn when enter key pressed', () => {
+        const onEnterMock = jest.fn();
+        const couponCode = 'abc';
+        const { wrapper } = renderComponent({
+          ...initialState,
+          onEnterFn: onEnterMock,
+        });
+        wrapper.setState({
+          value: couponCode,
+        });
+        expect(onEnterMock).not.toHaveBeenCalled();
+        wrapper.find('input').simulate('keyDown', { keyCode: 13 });
+        expect(onEnterMock).toHaveBeenCalledTimes(1);
+        expect(onEnterMock).toHaveBeenCalledWith(couponCode);
+      });
+      it('should not call onEnterFn when not enter key pressed', () => {
+        const onEnterMock = jest.fn();
+        const { wrapper } = renderComponent({
+          ...initialState,
+          onEnterFn: onEnterMock,
+        });
+        expect(onEnterMock).not.toHaveBeenCalled();
+        wrapper.find('input').simulate('keyDown', { keyCode: 20 });
+        expect(onEnterMock).not.toHaveBeenCalled();
+      });
+>>>>>>> release
     });
   });
 });

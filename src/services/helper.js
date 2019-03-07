@@ -15,3 +15,12 @@ export function hasNumber(myString) {
 export function checkPassword(password) {
   return hasNumber(password) && password.length > 5;
 }
+<<<<<<< HEAD
+=======
+
+export function validateConsents(value, consentDefinitions) {
+  return consentDefinitions.every(
+    (consent, index) => !(consent.required && !value[index]),
+  );
+}
+>>>>>>> release

@@ -1,5 +1,6 @@
 # Build Automation Tools
 
+<<<<<<< HEAD
 ### `yarn start` (`start.js`)
 
 - Cleans up the output `/build` directory (`clean.js`)
@@ -8,10 +9,23 @@
   [webpack-middleware](https://github.com/kriasoft/webpack-middleware))
 - Launches Node.js server from the compiled output folder (`runServer.js`)
 - Launches [Browsersync](https://browsersync.io/) and
+=======
+
+
+### `yarn start` (`start.js`)
+
+* Cleans up the output `/build` directory (`clean.js`)
+* Copies static files to the output folder (`copy.js`)
+* Launches [Webpack](https://webpack.github.io/) compiler in a watch mode (via
+  [webpack-middleware](https://github.com/kriasoft/webpack-middleware))
+* Launches Node.js server from the compiled output folder (`runServer.js`)
+* Launches [Browsersync](https://browsersync.io/) and
+>>>>>>> release
   [Hot Module Replacement](https://webpack.github.io/docs/hot-module-replacement)
 
 ### `yarn run build` (`build.js`)
 
+<<<<<<< HEAD
 - Cleans up the output `/build` folder (`clean.js`)
 - Copies static files to the output folder (`copy.js`)
 - Creates application bundles with Webpack (`bundle.js`, `webpack.config.js`)
@@ -20,6 +34,16 @@
 
 - Builds the project from source files (`build.js`)
 - Pushes the contents of the `/build` folder to a remote server with Git
+=======
+* Cleans up the output `/build` folder (`clean.js`)
+* Copies static files to the output folder (`copy.js`)
+* Creates application bundles with Webpack (`bundle.js`, `webpack.config.js`)
+
+### `yarn run deploy` (`deploy.js`)
+
+* Builds the project from source files (`build.js`)
+* Pushes the contents of the `/build` folder to a remote server with Git
+>>>>>>> release
 
 ## Options
 
@@ -46,9 +70,18 @@ $ yarn start --release                    # Launch dev server in production mode
 
 ## Misc
 
+<<<<<<< HEAD
 - `webpack.config.js` - Webpack configuration for both client-side and
   server-side bundles
 - `postcss.config.js` - PostCSS configuration for transforming styles with JS
   plugins
 - `run.js` - Helps to launch other scripts with `babel-node` (e.g. `babel-node tools/run build`)
 - `.eslintrc` - ESLint overrides for built automation scripts
+=======
+* `webpack.config.js` - Webpack configuration for both client-side and
+  server-side bundles
+* `postcss.config.js` - PostCSS configuration for transforming styles with JS
+  plugins
+* `run.js` - Helps to launch other scripts with `babel-node` (e.g. `babel-node tools/run build`)
+* `.eslintrc` - ESLint overrides for built automation scripts
+>>>>>>> release

@@ -1,16 +1,33 @@
 @import '../../../styles/variables.css';
 
 .register {
+<<<<<<< HEAD
   width: 240px;
   max-width: 400px;
   padding: 80px;
   background-color: #fff;
 
   & form label {
+=======
+  width: 60%;
+  margin: 60px auto;
+
+  & form > label {
+>>>>>>> release
     margin-top: 20px;
   }
 }
 
 .buttonGoto {
+<<<<<<< HEAD
   margin-top: 20px;
+=======
+  margin-top: 10px;
+}
+
+@media (--xsmall-viewport-max) {
+  .register {
+    width: 80%;
+  }
+>>>>>>> release
 }
