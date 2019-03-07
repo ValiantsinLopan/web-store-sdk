@@ -8,9 +8,11 @@ import LocalAuth from './../../common/LocalAuth';
 export class LocalLogin extends React.Component {
   static propTypes = {
     onComplete: PropTypes.func,
+    onEmailChange: PropTypes.func,
   };
   static defaultProps = {
     onComplete: () => {},
+    onEmailChange: () => {},
   };
 
   login = async ({ email, password }) => {
@@ -20,7 +22,7 @@ export class LocalLogin extends React.Component {
       if (!token) throw Error('Unauthorized');
 
       if (onComplete) {
-        onComplete(token);
+        onComplete(token, email);
       }
     } catch (error) {
       return error;
@@ -29,7 +31,14 @@ export class LocalLogin extends React.Component {
   };
 
   render() {
-    return <LocalAuth onSubmit={this.login} submitCopy="Log in" />;
+    const { onEmailChange } = this.props;
+    return (
+      <LocalAuth
+        onSubmit={this.login}
+        onEmailChange={onEmailChange}
+        submitCopy="Log in"
+      />
+    );
   }
 }
 

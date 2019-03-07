@@ -6,5 +6,7 @@
   "Customer already exists.": "",
   "An error occured.": "",
   "Log in": "",
-  "Register": "Zarejestruj"
+  "Register": "Zarejestruj",
+  "Please agree on all consents to use this service": "Zaakceptuj warunki korzystania z serwisu aby przejść dalej",
+  "I accept the {{htmltag}}Terms and Conditions{{endhtmltag}} of Cleeng": "Akceptuje warunki umowy"
 }

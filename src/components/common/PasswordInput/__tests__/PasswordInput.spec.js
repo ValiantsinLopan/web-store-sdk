@@ -34,8 +34,9 @@ describe('<PasswordInput/>', () => {
       wrapper
         .find('Input')
         .props()
-        .onChangeFn({ target: { value: 'sth' } });
+        .onChangeFn('sth');
       expect(onChangeMock).toHaveBeenCalledTimes(1);
+      expect(onChangeMock).toHaveBeenCalledWith('sth');
     });
     it('should set too short error if less than 6 chars', () => {
       const { wrapper } = renderComponent({
@@ -45,7 +46,7 @@ describe('<PasswordInput/>', () => {
       wrapper
         .find('Input')
         .props()
-        .onChangeFn({ target: { value: 'sth' } });
+        .onChangeFn('sth');
       expect(wrapper.state().passError).toBe('Too short');
       expect(wrapper.state().errorLabel).toBe('too-short');
     });
@@ -57,7 +58,7 @@ describe('<PasswordInput/>', () => {
       wrapper
         .find('Input')
         .props()
-        .onChangeFn({ target: { value: 'something' } });
+        .onChangeFn('something');
       expect(wrapper.state().passError).toBe('Weak');
       expect(wrapper.state().errorLabel).toBe('weak');
     });
@@ -69,7 +70,7 @@ describe('<PasswordInput/>', () => {
       wrapper
         .find('Input')
         .props()
-        .onChangeFn({ target: { value: 'somethingELSE' } });
+        .onChangeFn('somethingELSE');
       expect(wrapper.state().passError).toBe('Weak');
       expect(wrapper.state().errorLabel).toBe('weak');
     });
@@ -81,7 +82,7 @@ describe('<PasswordInput/>', () => {
       wrapper
         .find('Input')
         .props()
-        .onChangeFn({ target: { value: 'somethingELSE123' } });
+        .onChangeFn('somethingELSE123');
       expect(wrapper.state().passError).toBe('Good');
       expect(wrapper.state().errorLabel).toBe('good');
     });
@@ -93,7 +94,7 @@ describe('<PasswordInput/>', () => {
       wrapper
         .find('Input')
         .props()
-        .onChangeFn({ target: { value: 'somethingELSE123$%^' } });
+        .onChangeFn('somethingELSE123$%^');
       expect(wrapper.state().passError).toBe('Strong');
       expect(wrapper.state().errorLabel).toBe('strong');
     });
@@ -105,7 +106,7 @@ describe('<PasswordInput/>', () => {
       wrapper
         .find('Input')
         .props()
-        .onChangeFn({ target: { value: 'something123' } });
+        .onChangeFn('something123');
       expect(wrapper.state().passError).toBe('Fair');
       expect(wrapper.state().errorLabel).toBe('fair');
     });

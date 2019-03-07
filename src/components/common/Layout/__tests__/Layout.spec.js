@@ -12,7 +12,6 @@ describe('<Layout/>', () => {
     it('should render initial state', () => {
       const { wrapper } = renderComponent(initialProps);
       expect(wrapper.hasClass('root')).toBe(true);
-      expect(wrapper.exists('Header')).toBe(true);
     });
   });
 });

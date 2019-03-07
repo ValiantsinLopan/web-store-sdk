@@ -22,8 +22,11 @@
   --screen-sm-min: 768px;  /* Small screen / tablet */
   --screen-md-min: 992px;  /* Medium screen / desktop */
   --screen-lg-min: 1200px; /* Large screen / wide desktop */
-  --button-gradient-1: #65bd72;
-  --button-gradient-2: #64bca3;
+  --button-main-color: #7c8ca5;
+  --button-border-color: #d3dbe6;
+  --button-main-font-color: #fff;
+  --button-cleeng-gradient-1: #65bd72;
+  --button-cleeng-gradient-2: #64bca3;
   --button-secondary: #595fbb;
   --button-text: #fff;
   --error: #ff0954;
@@ -36,7 +39,12 @@
   --strong: #5db98f;
   --main-text-color: #606376;
   --light-grey: #d3dbe6;
+  --lighter-grey: #bcc3cd;
+  --medium-grey: #f6f7f9;
+  --font-light-color: #7c8ca5;
   --header-height: 60px;
+  --error-offer: #cb4477;
+  --pass-offer: #5db98f;
 }
 
 @custom-media --small-viewport-min (min-width: 768px);

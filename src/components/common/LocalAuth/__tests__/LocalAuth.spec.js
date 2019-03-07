@@ -1,8 +1,9 @@
 import { renderComponentWithLabeling } from 'test/helpers/testComponentHelper.js';
+import Button from 'src/components/common/Button';
+import EmailInput from 'src/components/common/EmailInput/EmailInput';
+import PasswordInput from 'src/components/common/PasswordInput';
+import Consents from 'src/components/common/Consents';
 import LocalAuth from '../LocalAuth';
-import Button from './../../Button';
-import Input from './../../Input';
-import PasswordInput from './../../PasswordInput';
 
 jest.mock('../../../../services/authentication', () => ({
   login: jest.fn().mockImplementation(
@@ -12,6 +13,15 @@ jest.mock('../../../../services/authentication', () => ({
       }),
   ),
 }));
+
+const mockConsent = [
+  {
+    name: 'name',
+    version: '1',
+    label: 'consent <a href=""> Terms </a>',
+    required: true,
+  },
+];
 
 describe('<LocalAuth/>', () => {
   const renderComponent = renderComponentWithLabeling(LocalAuth);
@@ -34,9 +44,17 @@ describe('<LocalAuth/>', () => {
       const { wrapper } = renderComponent(initialProps);
       expect(wrapper.find('form').length).toBe(1);
       expect(wrapper.find(Button).length).toBe(1);
-      expect(wrapper.find(Input).length).toBe(1);
+      expect(wrapper.find(EmailInput).length).toBe(1);
       expect(wrapper.find(PasswordInput).length).toBe(1);
       expect(wrapper.find(Button).props().children).toBe('Log in');
+      expect(wrapper.find(Consents).length).toBe(0);
+    });
+    it('should render consents while register', () => {
+      const { wrapper } = renderComponent({
+        onSubmit: onSubmitMock,
+        submitCopy: 'Register',
+      });
+      expect(wrapper.find(Consents).length).toBe(1);
     });
   });
   describe('@events', () => {
@@ -88,6 +106,7 @@ describe('<LocalAuth/>', () => {
         setImmediate(() => {
           expect(onSubmitErrorMock).toHaveBeenCalledTimes(1);
           expect(instance.state.error).not.toBe('');
+          expect(instance.state.sendConsents).toBe(true);
           done();
         });
       });
@@ -97,6 +116,7 @@ describe('<LocalAuth/>', () => {
           instance.setState({
             email: '',
             password: 'testtest',
+            consents: [true],
           });
           wrapper
             .find('form')
@@ -110,6 +130,7 @@ describe('<LocalAuth/>', () => {
           instance.setState({
             email: 'john@example.com',
             password: '',
+            consents: [true],
           });
           wrapper
             .find('form')
@@ -118,11 +139,27 @@ describe('<LocalAuth/>', () => {
           expect(instance.state.errorsField.password).not.toBe('');
           done();
         });
+        it('should set error and not call onSubmit cb while required consents not checked', done => {
+          const { wrapper, instance } = renderComponent(initialProps);
+          instance.setState({
+            email: 'john@example.com',
+            password: '',
+            consents: [false],
+            consentDefinitions: mockConsent,
+          });
+          wrapper
+            .find('form')
+            .simulate('submit', { preventDefault: preventDefaultMock });
+          expect(onSubmitMock).not.toHaveBeenCalled();
+          expect(instance.state.errorsField.consents).not.toBe('');
+          done();
+        });
         it('should set error and not call onSubmit cb when email not formatted correctly', done => {
           const { wrapper, instance } = renderComponent(initialProps);
           instance.setState({
             email: 'john',
             password: 'testtest',
+            consents: [true],
           });
           wrapper
             .find('form')
@@ -139,6 +176,7 @@ describe('<LocalAuth/>', () => {
           instance.setState({
             email: 'john@example.com',
             password: 'testtest',
+            consents: [true],
           });
           wrapper
             .find('form')
@@ -155,6 +193,7 @@ describe('<LocalAuth/>', () => {
           instance.setState({
             email: 'john@example.com',
             password: 'testtest',
+            consents: [true],
           });
           wrapper
             .find('form')
@@ -194,9 +233,9 @@ describe('<LocalAuth/>', () => {
         const { instance, wrapper } = renderComponent(initialProps);
         expect(instance.state.email).toBe('');
         wrapper
-          .find(Input)
+          .find(EmailInput)
           .props()
-          .onChangeFn({ target: { value: 'joh', name: 'email' } });
+          .onChangeFn('joh');
         expect(instance.state.email).toBe('joh');
       });
       it('should set password in state when passwordq input changed', () => {
@@ -207,6 +246,36 @@ describe('<LocalAuth/>', () => {
           .props()
           .onChangeFn('test');
         expect(instance.state.password).toBe('test');
+      });
+      it('should call onEmailChange when email input changed', () => {
+        const onEmailChangeMock = jest.fn();
+        const { wrapper } = renderComponent({
+          ...initialProps,
+          onEmailChange: onEmailChangeMock,
+        });
+        expect(onEmailChangeMock).not.toHaveBeenCalled();
+        wrapper
+          .find(EmailInput)
+          .props()
+          .onChangeFn('joh');
+        expect(onEmailChangeMock).toHaveBeenCalledTimes(1);
+        expect(onEmailChangeMock).toHaveBeenCalledWith('joh');
+      });
+      it('should call onConsentsChange and update consents definitions', () => {
+        const consents = [false];
+        const consentDefinitions = mockConsent;
+        const { wrapper } = renderComponent({
+          onSubmit: onSubmitMock,
+          submitCopy: 'Register',
+        });
+        expect(wrapper.state().consents).toEqual([]);
+        expect(wrapper.state().consentDefinitions).toEqual([]);
+        wrapper
+          .find(Consents)
+          .props()
+          .onChangeFn([false], mockConsent);
+        expect(wrapper.state().consents).toEqual(consents);
+        expect(wrapper.state().consentDefinitions).toEqual(consentDefinitions);
       });
     });
   });

@@ -31,9 +31,8 @@ class PasswordInput extends React.Component {
     };
   }
 
-  onChangeFunction = e => {
+  onChangeFunction = value => {
     const { onChangeFn, isPassValideted } = this.props;
-    const { value } = e.target;
     if (isPassValideted) {
       const passwordStrength = this.validateNewPassword(value);
       this.setState({

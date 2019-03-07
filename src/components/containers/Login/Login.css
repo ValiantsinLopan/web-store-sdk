@@ -1,10 +1,11 @@
 @import '../../../styles/variables.css';
 
 .login {
-  width: 240px;
-  max-width: 400px;
-  padding: 80px;
-  background-color: #fff;
+  margin: 0 auto;
+  width: 55%;
+  text-align: center;
+  margin-top: 40px;
+  padding-bottom: 30px;
 
   & form label {
     margin-top: 20px;
@@ -12,5 +13,16 @@
 }
 
 .buttonGoto {
+  margin-top: 10px;
+}
+
+.buttonResetPassword {
   margin-top: 20px;
+  margin-bottom: 30px;
+}
+
+@media (--xsmall-viewport-max) {
+  .login {
+    width: 80%;
+  }
 }

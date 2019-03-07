@@ -1,0 +1,37 @@
+@import '../../../styles/variables.css';
+
+.couponMsg {
+  font-size: 12px;
+  font-family: var(--font-family-light);
+  background-color: var(--medium-grey);
+  border-radius: 5px;
+  padding: 10px;
+  position: absolute;
+  bottom: 50px;
+}
+
+.couponSuccess {
+  color: var(--pass-offer);
+}
+
+.couponFail {
+  color: var(--error-offer);
+}
+
+.msgShown {
+  opacity: 1;
+  transition: opacity 250ms linear;
+}
+
+.msgHidden {
+  opacity: 0;
+  transition: opacity 250ms linear;
+}
+
+@media (--xsmall-viewport-max) {
+  .couponMsg {
+    width: 42%;
+    left: 0;
+    bottom: 0;
+  }
+}

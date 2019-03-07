@@ -10,7 +10,8 @@ import LocalLogin from 'src/components/containers/LocalLogin';
 import Button from 'src/components/common/Button';
 
 import { goToStep } from 'src/actions/checkoutStateActions';
-import { onSuccessfulLogin } from 'src/actions/userActions';
+import { onSuccessfulLogin, setTempEmail } from 'src/actions/userActions';
+import SocialLogins from 'src/components/common/SocialLogins';
 
 import s from './Login.css';
 
@@ -20,32 +21,63 @@ export class Login extends Component {
   static propTypes = {
     onSuccessfulLogin: PropTypes.func.isRequired,
     goToStep: PropTypes.func.isRequired,
+    setTempEmail: PropTypes.func,
     t: PropTypes.func,
   };
   static defaultProps = {
+    setTempEmail: () => {},
     t: () => {},
   };
 
-  successfulLogin = token => {
+  constructor(props) {
+    super(props);
+    this.state = {
+      email: '',
+    };
+  }
+
+  successfulLogin = (token, email) => {
     const { onSuccessfulLogin } = this.props;
-    onSuccessfulLogin(token);
+    onSuccessfulLogin(token, email);
   };
   goToRegister = () => {
     const { goToStep } = this.props;
     goToStep('register');
+  };
+  goToResetPassword = () => {
+    const { goToStep, setTempEmail } = this.props;
+    const { email } = this.state;
+    setTempEmail(email);
+    goToStep('passwordReset');
+  };
+  emailChanged = email => {
+    this.setState({
+      email,
+    });
   };
 
   render() {
     const { t } = this.props;
     return (
       <div className={s.login}>
-        <LocalLogin onComplete={this.successfulLogin} />
+        <LocalLogin
+          onComplete={this.successfulLogin}
+          onEmailChange={this.emailChanged}
+        />
         <Button
           onClickFn={this.goToRegister}
-          color="white"
+          variant="secondary"
           className={s.buttonGoto}
         >
           {t('Go to register')}
+        </Button>
+        <SocialLogins />
+        <Button
+          onClickFn={this.goToResetPassword}
+          className={s.buttonResetPassword}
+          variant="link"
+        >
+          {t('Forgot password?')}
         </Button>
       </div>
     );
@@ -60,6 +92,7 @@ export default compose(
     {
       onSuccessfulLogin,
       goToStep,
+      setTempEmail,
     },
   ),
   translate(name),

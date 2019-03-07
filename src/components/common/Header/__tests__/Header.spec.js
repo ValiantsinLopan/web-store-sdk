@@ -2,7 +2,7 @@ import testComponentHelper from 'test/helpers/testComponentHelper.js';
 import Header from '../Header';
 
 describe('<Header/>', () => {
-  const renderComponent = testComponentHelper(Header);
+  const renderComponent = testComponentHelper(Header.WrappedComponent);
 
   describe('@renders', () => {
     it('should render initial state', () => {

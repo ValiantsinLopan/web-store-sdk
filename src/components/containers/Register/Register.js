@@ -8,11 +8,11 @@ import customLabeling from 'src/components/hoc/labeling';
 
 import { goToStep } from 'src/actions/checkoutStateActions';
 import { onSuccessfulLogin } from 'src/actions/userActions';
+import LocalRegister from 'src/components/containers/LocalRegister';
+import Button from 'src/components/common/Button';
+import SocialLogins from 'src/components/common/SocialLogins';
 
 import s from './Register.css';
-
-import LocalRegister from './../LocalRegister';
-import Button from './../../common/Button';
 
 const name = 'Register';
 
@@ -26,9 +26,9 @@ export class Register extends Component {
     t: () => {},
   };
 
-  successfulLogin = token => {
+  successfulLogin = (token, email) => {
     const { onSuccessfulLogin } = this.props;
-    onSuccessfulLogin(token);
+    onSuccessfulLogin(token, email);
   };
   goToLogin = () => {
     const { goToStep } = this.props;
@@ -42,11 +42,12 @@ export class Register extends Component {
         <LocalRegister onComplete={this.successfulLogin} />
         <Button
           onClickFn={this.goToLogin}
-          color="white"
+          variant="secondary"
           className={s.buttonGoto}
         >
-          {t('Go to login')}
+          {t('Have an account?')}
         </Button>
+        <SocialLogins />
       </div>
     );
   }

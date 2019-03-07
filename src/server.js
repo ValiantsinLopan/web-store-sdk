@@ -25,6 +25,8 @@ import config from './config';
 import i18n from './config/i18next'; // initialized i18next instance
 
 import User from './controller/User';
+import Offer from './controller/Offer';
+import Access from './controller/Access';
 
 process.env.NODE_TLS_REJECT_UNAUTHORIZED = 0;
 
@@ -58,6 +60,8 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
 app.use('/api/user', User.routing);
+app.use('/api/offer', Offer.routing);
+app.use('/api/access', Access.routing);
 
 app.use(passport.initialize());
 

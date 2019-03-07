@@ -16,9 +16,16 @@ describe('<Button/>', () => {
       expect(wrapper.hasClass('button')).toBe(true);
       expect(wrapper.hasClass(className)).toBe(true);
     });
-    it('should add color class name if color passed', () => {
-      const { wrapper } = renderComponent({ color: 'white' });
-      expect(wrapper.hasClass('button-variant-white')).toBe(true);
+    it('should add variant class name if variant passed', () => {
+      const { wrapper } = renderComponent({ variant: 'secondary' });
+      expect(wrapper.hasClass('button-variant-secondary')).toBe(true);
+    });
+    it('should add text-align class while button is in fb or google variant', () => {
+      const { wrapper } = renderComponent({
+        children: 'some text',
+        variant: 'fb',
+      });
+      expect(wrapper.hasClass('text-align')).toBe(true);
     });
     it('should change type if passed', () => {
       const newType = 'submit';

@@ -1,17 +1,32 @@
 @import '../../../styles/variables.css';
 
 .header {
-  border-bottom: 1px solid #fff;
-  width: 100%;
+  border-bottom: 1px var(--light-grey) solid;
+  margin: 0 35px;
   text-align: center;
   padding: 0;
   display: flex;
+  position: relative;
+}
+
+.goBackButton {
+  position: absolute;
+  top: 37px;
 }
 
 .logo {
-  margin: 25px auto;
+  margin: 40px auto;
+  width: 100%;
 
   img {
-    width: 192px;
+    width: auto;
+    height: 100%;
+  }
+}
+
+@media (--xsmall-viewport-max) {
+  .goBackButton {
+    top: 4px;
+    left: -25px;
   }
 }

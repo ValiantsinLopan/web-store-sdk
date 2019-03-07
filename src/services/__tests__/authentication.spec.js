@@ -37,6 +37,64 @@ describe('Authentication service', () => {
     });
     expect(response).toEqual({ token: '1234' });
   });
+
+  describe('resetPassword', () => {
+    it('should call reset password action', async () => {
+      global.fetch = jest.fn().mockImplementationOnce(() => {
+        const p = new Promise(resolve => {
+          resolve({
+            json() {
+              return {
+                data: {
+                  success: true,
+                },
+              };
+            },
+          });
+        });
+
+        return p;
+      });
+      const email = 'john.doe@example.com';
+      const response = await Authentication.resetPassword({ email });
+      expect(global.fetch).toHaveBeenCalledTimes(1);
+      expect(global.fetch).toHaveBeenCalledWith('/api/user/resetPassword', {
+        body: '{"email":"john.doe@example.com"}',
+        headers: {
+          Accept: 'application/json',
+          'Content-Type': 'application/json',
+        },
+        method: 'POST',
+      });
+      expect(response).toEqual({ success: true });
+    });
+    it('should throw an error if error message found', async () => {
+      const errorObj = {
+        error: 'some error',
+        message: 'error message',
+      };
+      global.fetch = jest.fn().mockImplementationOnce(() => {
+        const p = new Promise(resolve => {
+          resolve({
+            json() {
+              return errorObj;
+            },
+          });
+        });
+
+        return p;
+      });
+
+      try {
+        await Authentication.resetPassword({
+          email: 'john.doe@example.com',
+        });
+      } catch (e) {
+        expect(e).toEqual(errorObj);
+      }
+    });
+  });
+
   it('customerToken should get data for user', async () => {
     const customerToken = '123';
     const response = await Authentication.getUser({ customerToken });
@@ -51,6 +109,7 @@ describe('Authentication service', () => {
     });
     expect(response).toEqual({ token: '1234' });
   });
+
   describe('register', () => {
     it('should call for country and then register', async () => {
       global.fetch = jest
@@ -202,6 +261,135 @@ describe('Authentication service', () => {
         },
         method: 'POST',
       });
+    });
+  });
+  describe('getConsents', () => {
+    const consentsResponse = {
+      terms: {
+        broadcasterId: 0,
+        name: 'terms',
+        version: '1',
+        value: 'https://cleeng.com/legal',
+        label:
+          'I accept the <a href="https://cleeng.com/cleeng-user-agreement" target="_blank">Terms and Conditions</a> of Cleeng.',
+        required: true,
+      },
+    };
+    it('should call get consents definitions action', async () => {
+      global.fetch = jest.fn().mockImplementationOnce(() => {
+        const p = new Promise(resolve => {
+          resolve({
+            json() {
+              return {
+                data: {
+                  ...consentsResponse,
+                },
+              };
+            },
+          });
+        });
+
+        return p;
+      });
+      const response = await Authentication.getConsents();
+      expect(global.fetch).toHaveBeenCalledTimes(1);
+      expect(global.fetch).toHaveBeenCalledWith('/api/user/getConsents');
+      expect(response).toEqual(consentsResponse);
+    });
+    it('should throw an error if error message found', async () => {
+      const errorObj = {
+        error: 'some error',
+        message: 'error message',
+      };
+      global.fetch = jest.fn().mockImplementationOnce(() => {
+        const p = new Promise(resolve => {
+          resolve({
+            json() {
+              return errorObj;
+            },
+          });
+        });
+
+        return p;
+      });
+
+      try {
+        await Authentication.getConsents({
+          data: consentsResponse,
+        });
+      } catch (e) {
+        expect(e).toEqual(errorObj);
+      }
+    });
+  });
+  describe('submitConsents', () => {
+    const email = 'example@email.com';
+    const consent = {
+      name: 'name',
+      version: '1',
+      label: 'consent <a href=""> Terms </a>',
+      required: false,
+    };
+    const isChecked = false;
+    it('should call submit consents action', async () => {
+      global.fetch = jest.fn().mockImplementationOnce(() => {
+        const p = new Promise(resolve => {
+          resolve({
+            json() {
+              return {
+                data: {
+                  success: true,
+                },
+              };
+            },
+          });
+        });
+
+        return p;
+      });
+      const response = await Authentication.submitConsent({
+        email,
+        consent,
+        isChecked,
+      });
+      expect(global.fetch).toHaveBeenCalledTimes(1);
+      expect(global.fetch).toHaveBeenCalledWith('/api/user/submitConsent', {
+        body: JSON.stringify({
+          customerEmail: email,
+          name: consent.name,
+          state: isChecked,
+          version: consent.version,
+        }),
+        headers: {
+          Accept: 'application/json',
+          'Content-Type': 'application/json',
+        },
+        method: 'POST',
+      });
+      expect(response).toEqual({ success: true });
+    });
+    it('should throw an error if error message found', async () => {
+      const errorObj = {
+        error: 'some error',
+        message: 'error message',
+      };
+      global.fetch = jest.fn().mockImplementationOnce(() => {
+        const p = new Promise(resolve => {
+          resolve({
+            json() {
+              return errorObj;
+            },
+          });
+        });
+
+        return p;
+      });
+
+      try {
+        await Authentication.submitConsent({ email, consent, isChecked });
+      } catch (e) {
+        expect(e).toEqual(errorObj);
+      }
     });
   });
 });

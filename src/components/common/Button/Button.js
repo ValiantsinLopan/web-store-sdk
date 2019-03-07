@@ -5,12 +5,16 @@ import PropTypes from 'prop-types';
 import withStyles from 'isomorphic-style-loader/lib/withStyles';
 import s from './Button.css';
 
-const Button = ({ children, onClickFn, color, className, type }) => (
+const socialButtons = ['google', 'fb'];
+const Button = ({ children, onClickFn, variant, className, type }) => (
   <button
     className={cx(
       s.button,
-      { [s[`button-variant-${color}`]]: color },
+      { [s[`button-variant-${variant}`]]: variant },
       className,
+      {
+        [s[`text-align`]]: children && socialButtons.includes(variant),
+      },
     )}
     type={type}
     onClick={onClickFn}
@@ -21,7 +25,17 @@ const Button = ({ children, onClickFn, color, className, type }) => (
 
 Button.propTypes = {
   className: PropTypes.string,
-  color: PropTypes.string,
+  variant: PropTypes.oneOf([
+    '',
+    'secondary',
+    'link',
+    'back',
+    'google',
+    'fb',
+    'creditcard',
+    'cleeng',
+    'cleengwhite',
+  ]),
   onClickFn: PropTypes.func,
   children: PropTypes.oneOfType([PropTypes.string, PropTypes.element]),
   type: PropTypes.string,
@@ -29,7 +43,7 @@ Button.propTypes = {
 
 Button.defaultProps = {
   className: '',
-  color: '',
+  variant: '',
   onClickFn: () => {},
   children: '',
   type: 'button',

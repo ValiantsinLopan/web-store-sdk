@@ -1,13 +1,14 @@
+import { getUser } from 'src/services/authentication';
+import { mockStoreCreator } from 'test/helpers/getMockStore';
+
 import * as actions from '../userActions';
 import {
   SET_CUSTOMER_TOKEN,
   SET_USER_DETAILS,
+  SET_TEMP_EMAIL,
   GO_TO_CHECKOUT_STEP,
+  SET_USER_EMAIL,
 } from '../../constants';
-
-import { getUser } from '../../services/authentication';
-
-import { mockStoreCreator } from './../../../test/helpers/getMockStore';
 
 jest.mock('./../../config/config.client', () => ({
   offerId: '123456',
@@ -30,7 +31,7 @@ describe('User Actions', () => {
   it('setCustomerToken(token)', () => {
     const token = '1234abc';
     expect(actions.setCustomerToken(token)).toEqual({
-      type: 'SET_CUSTOMER_TOKEN',
+      type: SET_CUSTOMER_TOKEN,
       payload: token,
     });
   });
@@ -39,8 +40,24 @@ describe('User Actions', () => {
       email: 'john@example.com',
     };
     expect(actions.setUserDetails(data)).toEqual({
-      type: 'SET_USER_DETAILS',
+      type: SET_USER_DETAILS,
       payload: data,
+    });
+  });
+  it('setTempEmail(data)', () => {
+    const data = {
+      email: 'john@example.com',
+    };
+    expect(actions.setTempEmail(data)).toEqual({
+      type: SET_TEMP_EMAIL,
+      payload: data,
+    });
+  });
+  it('setUserEmail(email)', () => {
+    const email = 'john@example.com';
+    expect(actions.setUserEmail(email)).toEqual({
+      type: SET_USER_EMAIL,
+      payload: email,
     });
   });
   describe('onSuccessfulLogin(token)', () => {
@@ -77,13 +94,18 @@ describe('User Actions', () => {
         }),
       };
       const token = '1234abc';
-      store.dispatch(actions.onSuccessfulLogin(token));
+      const email = 'john@example.com';
+      store.dispatch(actions.onSuccessfulLogin(token, email));
       const dispatchedActions = store.getActions();
       expect(dispatchedActions[0]).toEqual({
         payload: token,
         type: SET_CUSTOMER_TOKEN,
       });
       expect(dispatchedActions[1]).toEqual({
+        payload: email,
+        type: SET_USER_EMAIL,
+      });
+      expect(dispatchedActions[2]).toEqual({
         type: GO_TO_CHECKOUT_STEP,
         payload: 'offerDetails',
       });

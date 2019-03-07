@@ -1,0 +1,44 @@
+@import '../../../styles/variables.css';
+
+.sociallogins {
+  width: 100%;
+  margin-top: 10px;
+
+  & form label {
+    margin-top: 20px;
+  }
+}
+
+.label {
+  padding: 20px 0;
+  display: block;
+  overflow: hidden;
+  text-align: center;
+  font-size: 13px;
+  color: var(--lighter-grey);
+}
+
+.label::before,
+.label::after {
+  background-color: var(--lighter-grey);
+  content: '';
+  display: inline-block;
+  height: 1px;
+  position: relative;
+  vertical-align: middle;
+  width: 40%;
+}
+
+.label::before {
+  right: 20%;
+  margin-left: -50%;
+}
+
+.label::after {
+  left: 20%;
+  margin-right: -50%;
+}
+
+.buttonSocialSecond {
+  margin-top: 10px;
+}

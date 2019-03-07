@@ -1,0 +1,69 @@
+@import '../../../styles/variables.css';
+
+.payments {
+  width: 100%;
+  margin-top: 20px;
+}
+
+.methodsWrapper {
+  padding: 0 35px 0 55px;
+  margin-bottom: 10px;
+  font-size: 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.creditCardButton {
+  padding-left: 25px;
+  padding-right: 25px;
+}
+
+.paymentsWrapper {
+  padding: 0 35px;
+  margin-bottom: 10px;
+  height: 0;
+  overflow: hidden;
+  transition: height 0.3s ease-out;
+}
+
+.shown {
+  height: 135px;
+  transition: height 0.3s ease-in;
+}
+
+.paymentContent {
+  width: calc(100% - 10px);
+  height: 70px;
+  padding: 0 10px;
+  text-align: center;
+  background-color: var(--medium-grey);
+  margin-bottom: 10px;
+  border-radius: 5px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.paymentConfirmation {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.confirmButton {
+  width: 30%;
+}
+
+@media (--xsmall-viewport-max) {
+  .methodsWrapper {
+    padding: 0 10px;
+  }
+
+  .paymentsWrapper {
+    padding: 0 10px;
+  }
+
+  .confirmButton {
+    width: 50%;
+  }
+}

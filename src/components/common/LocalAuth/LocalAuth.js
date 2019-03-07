@@ -5,11 +5,15 @@ import { compose } from 'redux';
 import { translate } from 'react-i18next';
 import customLabeling from 'src/components/hoc/labeling';
 
-import { validateEmail, validatePassword } from 'src/services/helper';
+import { validatePassword } from 'src/services/helper';
+import { validateEmailField } from 'src/components/common/EmailInput/emailHelper';
+import { validateConsentsField } from 'src/components/common/Consents/consentsHelper';
 
-import PasswordInput from './../PasswordInput';
-import Input from './../Input';
-import Button from './../Button';
+import EmailInput from 'src/components/common/EmailInput/EmailInput';
+import PasswordInput from 'src/components/common/PasswordInput';
+import Button from 'src/components/common/Button';
+import Consents from 'src/components/common/Consents';
+
 import s from './LocalAuth.css';
 
 const name = 'LocalAuth';
@@ -19,10 +23,12 @@ export class LocalAuth extends React.Component {
     onSubmit: PropTypes.func.isRequired,
     submitCopy: PropTypes.string.isRequired,
     isPassValideted: PropTypes.bool,
+    onEmailChange: PropTypes.func,
     t: PropTypes.func,
   };
   static defaultProps = {
     isPassValideted: false,
+    onEmailChange: () => {},
     t: () => {},
   };
 
@@ -31,36 +37,55 @@ export class LocalAuth extends React.Component {
     this.state = {
       email: '',
       password: '',
+      consents: [],
       error: '',
       errorsField: {
         email: '',
         password: '',
+        consents: '',
       },
+      sendConsents: false,
+      consentDefinitions: [],
     };
   }
 
   handlePasswordChange = value => {
     this.setState({
       password: value,
-      errorsField: { password: '' },
+      errorsField: {
+        ...this.state.errorsField,
+        password: '',
+      },
     });
   };
 
-  handleInputChange = event => {
-    const { target } = event;
-    const { value, name } = target;
-
+  handleEmailChange = value => {
+    const { onEmailChange } = this.props;
     this.setState({
-      [name]: value,
+      email: value,
+      errorsField: {
+        ...this.state.errorsField,
+        email: '',
+      },
+    });
+    onEmailChange(value);
+  };
+
+  handleConsentsChange = (value, consentDefinitions) => {
+    this.setState({
+      ...this.state,
+      consents: value,
+      consentDefinitions,
+      errorsField: {
+        ...this.state.errorsField,
+        consents: '',
+      },
     });
   };
 
   validateField = (fieldType, value) => {
     const { t, isPassValideted } = this.props;
     let message = '';
-    if (fieldType === 'email' && !validateEmail(value)) {
-      message = t('The email address is not properly formatted.');
-    }
     if (fieldType === 'pass' && isPassValideted && !validatePassword(value)) {
       message = t(
         'Your password must contain at least 6 characters, including 1 digit.',
@@ -69,28 +94,30 @@ export class LocalAuth extends React.Component {
     if (value === '') {
       message = t('Please fill out this field.');
     }
-
     return message;
   };
 
   validate = data => {
+    const { t } = this.props;
+    const { consentDefinitions } = this.state;
     const errors = {
-      email: this.validateField('email', data.email),
+      email: validateEmailField(data.email, t),
       password: this.validateField('pass', data.password),
+      consents: validateConsentsField(data.consents, consentDefinitions, t),
     };
     this.setState({ errorsField: errors });
-
     return !Object.keys(errors).find(key => errors[key] !== '');
   };
 
   handleSubmit = event => {
     event.preventDefault();
-    const { email, password } = this.state;
+    const { email, password, consents } = this.state;
     const { onSubmit, t } = this.props;
     this.setState({
       error: '',
     });
-    if (this.validate({ email, password })) {
+    if (this.validate({ email, password, consents })) {
+      this.setState({ sendConsents: true });
       onSubmit({ email, password }).then(data => {
         if (data) {
           const errorsTranslations = {
@@ -103,6 +130,8 @@ export class LocalAuth extends React.Component {
               ? errorsTranslations[data.code]
               : errorsTranslations.default,
           });
+        } else {
+          this.setState({ sendConsents: false });
         }
       });
     }
@@ -110,7 +139,8 @@ export class LocalAuth extends React.Component {
 
   onEmailBlur = () => {
     const { email } = this.state;
-    const message = this.validateField('email', email);
+    const { t } = this.props;
+    const message = validateEmailField(email, t);
     this.setState({ errorsField: { email: message } });
   };
 
@@ -124,20 +154,19 @@ export class LocalAuth extends React.Component {
   };
 
   render() {
-    const { email, password, errorsField, error } = this.state;
+    const { email, password, errorsField, error, sendConsents } = this.state;
+    const { submitCopy } = this.props;
     const generalError = error ? s.generalError : '';
     return (
       <div className={s.wrapper}>
         {error && <div className={s.error}>{error}</div>}
         <form onSubmit={this.handleSubmit}>
-          <Input
+          <EmailInput
             className={generalError}
-            name="email"
             value={email}
-            icon="email"
             error={error ? 'general' : errorsField.email}
             onBlurFn={this.onEmailBlur}
-            onChangeFn={this.handleInputChange}
+            onChangeFn={this.handleEmailChange}
           />
           <PasswordInput
             className={generalError}
@@ -146,6 +175,14 @@ export class LocalAuth extends React.Component {
             onChangeFn={this.handlePasswordChange}
             isPassValideted={false}
           />
+          {submitCopy === 'Register' && (
+            <Consents
+              error={errorsField.consents}
+              sendConsents={sendConsents}
+              onChangeFn={this.handleConsentsChange}
+              email={email}
+            />
+          )}
           <Button type="submit">{this.getSubmitCopy()}</Button>
         </form>
       </div>

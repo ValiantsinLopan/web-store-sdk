@@ -1,16 +1,20 @@
 @import '../../../styles/variables.css';
 
 .register {
-  width: 240px;
-  max-width: 400px;
-  padding: 80px;
-  background-color: #fff;
+  width: 60%;
+  margin: 60px auto;
 
-  & form label {
+  & form > label {
     margin-top: 20px;
   }
 }
 
 .buttonGoto {
-  margin-top: 20px;
+  margin-top: 10px;
+}
+
+@media (--xsmall-viewport-max) {
+  .register {
+    width: 80%;
+  }
 }
